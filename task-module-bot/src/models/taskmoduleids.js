@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 const TaskModuleIds = {
-    YouTube: 'YouTube',
-    CustomForm: 'CustomForm',
-    AdaptiveCard: 'AdaptiveCard'
-};
+  YouTube: 'YouTube',
+  CustomForm: 'CustomForm',
+  AdaptiveCard: 'AdaptiveCard'
+}
 
-module.exports.TaskModuleIds = TaskModuleIds;
+module.exports.TaskModuleIds = TaskModuleIds
