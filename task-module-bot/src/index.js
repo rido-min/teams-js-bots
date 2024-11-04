@@ -24,6 +24,8 @@ const myBot = new TeamsTaskModuleBot()
 
 const server = express()
 server.use(express.json())
+server.use(express.static('pages'))
+
 const port = process.env.port || process.env.PORT || 3978
 server.listen(port, () => {
   console.log(`\n listening in port ${port} `)
