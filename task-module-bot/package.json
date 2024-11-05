@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "run:dev" : "dotenvx run -- node src/index.js",
+    "build" : "tsc --build",
+    "run:dev": "dotenvx run -- node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +16,7 @@
     "express": "^5.0.1"
   },
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.22.0"
+    "@dotenvx/dotenvx": "^1.22.0",
+    "typescript": "^5.6.3"
   }
 }

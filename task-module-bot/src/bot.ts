@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-const { TeamsActivityHandler, MessageFactory, CardFactory } = require('botbuilder')
-const { TaskModuleUIConstants } = require('./models/taskmoduleuiconstants')
-const { TaskModuleIds } = require('./models/taskmoduleids')
-const { TaskModuleResponseFactory } = require('./models/taskmoduleresponsefactory')
+import { TeamsActivityHandler, MessageFactory, CardFactory, TurnContext, TaskModuleRequest, TaskModuleResponse } from 'botbuilder'
+import { TaskModuleUIConstants } from './models/taskmoduleuiconstants'
+import { TaskModuleIds } from './models/taskmoduleids'
+import { TaskModuleResponseFactory } from './models/taskmoduleresponsefactory'
 
 const Actions = [
   TaskModuleUIConstants.AdaptiveCard,
@@ -12,7 +12,8 @@ const Actions = [
   TaskModuleUIConstants.YouTube
 ]
 
-class TeamsTaskModuleBot extends TeamsActivityHandler {
+export class TeamsTaskModuleBot extends TeamsActivityHandler {
+  baseUrl: string
   constructor () {
     super()
 
@@ -34,14 +35,18 @@ class TeamsTaskModuleBot extends TeamsActivityHandler {
     })
   };
 
-  handleTeamsTaskModuleFetch (context, taskModuleRequest) {
+  async handleTeamsTaskModuleFetch (context: TurnContext, taskModuleRequest: TaskModuleRequest) : Promise<TaskModuleResponse> {
     // Called when the user selects an options from the displayed HeroCard or
     // AdaptiveCard.  The result is the action to perform.
 
     console.log('handleTeamsTaskModuleFetch', taskModuleRequest)
 
     const cardTaskFetchValue = taskModuleRequest.data.data
-    const taskInfo = {} // TaskModuleTaskInfo
+    const taskInfo = {
+      url: '',
+      fallbackUrl: '',
+      card: null
+    } // TaskModuleTaskInfo
 
     if (cardTaskFetchValue === TaskModuleIds.YouTube) {
       // Display the YouTube.html page
@@ -59,10 +64,11 @@ class TeamsTaskModuleBot extends TeamsActivityHandler {
       this.setTaskInfo(taskInfo, TaskModuleUIConstants.AdaptiveCard)
     }
     console.log(taskInfo)
+    
     return TaskModuleResponseFactory.toTaskModuleResponse(taskInfo)
   }
 
-  async handleTeamsTaskModuleSubmit (context, taskModuleRequest) {
+  async handleTeamsTaskModuleSubmit (context : TurnContext, taskModuleRequest : TaskModuleRequest) : Promise<TaskModuleResponse> {
     
     console.log('handleTeamsTaskModuleSubmit', taskModuleRequest)
     // Called when data is being returned from the selected option (see `handleTeamsTaskModuleFetch').
@@ -156,4 +162,4 @@ class TeamsTaskModuleBot extends TeamsActivityHandler {
   }
 }
 
-module.exports.TeamsTaskModuleBot = TeamsTaskModuleBot
+

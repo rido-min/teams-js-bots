@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "declaration": true,
+      "target": "ES2016",
+      "module": "Node16",
+      "outDir": "./app",
+      "esModuleInterop": true,
+      "moduleResolution": "Node16",
+      "rootDir": "./src",
+      "sourceMap": true,
+      "incremental": true,
+      "tsBuildInfoFile": ".tsbuildinfo"
+    }
+  }

@@ -1,14 +1,14 @@
 // @ts-check
 
-const express = require('express')
+import express from 'express'
 
-const {
+import {
   CloudAdapter,
   ConfigurationServiceClientCredentialFactory,
   createBotFrameworkAuthenticationFromConfiguration
-} = require('botbuilder')
+} from 'botbuilder'
 
-const { TeamsTaskModuleBot } = require('./bot')
+import { TeamsTaskModuleBot } from './bot'
 
 const credentialsFactory = new ConfigurationServiceClientCredentialFactory({
   MicrosoftAppId: process.env.MicrosoftAppId,
