@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build" : "tsc --build",
-    "postbuild": "docker build -t botimages.azurecr.io/task-module-bot-ts:latest .",
+    "predocker": "npm run build",
+    "docker": "docker build -t botimages.azurecr.io/task-module-bot-ts:latest .",
     "prerundev": "npm run build",
     "rundev": "dotenvx run -- node app/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
