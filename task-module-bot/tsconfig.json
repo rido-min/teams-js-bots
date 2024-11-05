@@ -2,6 +2,7 @@
     "compilerOptions": {
       "declaration": true,
       "strict": true,
+      "noImplicitAny": true,
       "target": "ES2016",
       "module": "Node16",
       "outDir": "./app",
