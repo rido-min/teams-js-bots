@@ -9,7 +9,7 @@ export class UISettings {
   id: string
   buttonTitle: string
 
-  constructor (width, height, title, id, buttonTitle) {
+  constructor (width: number, height: number, title: string, id: string, buttonTitle: string) {
     this.width = width
     this.height = height
     this.title = title

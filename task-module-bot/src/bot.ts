@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { TeamsActivityHandler, MessageFactory, CardFactory, TurnContext, TaskModuleRequest, TaskModuleResponse } from 'botbuilder'
+import { TeamsActivityHandler, MessageFactory, CardFactory, TurnContext, TaskModuleRequest, TaskModuleResponse, Attachment, TaskModuleTaskInfo } from 'botbuilder'
 import { TaskModuleUIConstants } from './models/taskmoduleuiconstants'
 import { TaskModuleIds } from './models/taskmoduleids'
 import { TaskModuleResponseFactory } from './models/taskmoduleresponsefactory'
+import { UISettings } from './models/uisettings'
 
 const Actions = [
   TaskModuleUIConstants.AdaptiveCard,
@@ -13,7 +14,7 @@ const Actions = [
 ]
 
 export class TeamsTaskModuleBot extends TeamsActivityHandler {
-  baseUrl: string
+  baseUrl: string | undefined
   constructor () {
     super()
 
@@ -35,6 +36,9 @@ export class TeamsTaskModuleBot extends TeamsActivityHandler {
     })
   };
 
+
+
+
   async handleTeamsTaskModuleFetch (context: TurnContext, taskModuleRequest: TaskModuleRequest) : Promise<TaskModuleResponse> {
     // Called when the user selects an options from the displayed HeroCard or
     // AdaptiveCard.  The result is the action to perform.
@@ -42,11 +46,8 @@ export class TeamsTaskModuleBot extends TeamsActivityHandler {
     console.log('handleTeamsTaskModuleFetch', taskModuleRequest)
 
     const cardTaskFetchValue = taskModuleRequest.data.data
-    const taskInfo = {
-      url: '',
-      fallbackUrl: '',
-      card: null
-    } // TaskModuleTaskInfo
+    const taskInfo : TaskModuleTaskInfo= {card: undefined, url: '', fallbackUrl: ''}
+    
 
     if (cardTaskFetchValue === TaskModuleIds.YouTube) {
       // Display the YouTube.html page
@@ -87,17 +88,16 @@ export class TeamsTaskModuleBot extends TeamsActivityHandler {
     }
   }
 
-  setTaskInfo (taskInfo, uiSettings) {
+  setTaskInfo (taskInfo : TaskModuleTaskInfo, uiSettings: UISettings) {
     taskInfo.height = uiSettings.height
     taskInfo.width = uiSettings.width
     taskInfo.title = uiSettings.title
   }
 
-  getTaskModuleHeroCardOptions () {
+  getTaskModuleHeroCardOptions () : Attachment{
     return CardFactory.heroCard(
       'Dialog (referred as task modules in TeamsJS v1.x) Invocation from Hero Card',
-      '',
-      null, // No images
+      undefined,
       Actions.map((cardType) => {
         return {
           type: 'invoke',

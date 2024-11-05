@@ -31,14 +31,14 @@ server.listen(port, () => {
   console.log(`\n listening in port ${port} v2 `)
 })
 
-server.get('/getAppConfig', (req, res,next) => {
+server.get('/getAppConfig', (req: express.Request, res : express.Response) => {
   var responseMessageData = {
       MicrosoftAppId: process.env.MicrosoftAppId
   }
   res.send(responseMessageData)
 })
 
-server.post('/api/messages', async (req, res) => {
+server.post('/api/messages', async (req: express.Request, res: express.Response) => {
   console.log(req.body)
   await adapter.process(req, res, (context) => myBot.run(context))
 })

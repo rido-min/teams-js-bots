@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build" : "tsc --build",
+    "build": "tsc --build",
     "predocker": "npm run build",
     "docker": "docker build -t botimages.azurecr.io/task-module-bot-ts:latest .",
     "prerundev": "npm run build",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.22.0",
+    "@types/express": "^5.0.0",
     "typescript": "^5.6.3"
   }
 }

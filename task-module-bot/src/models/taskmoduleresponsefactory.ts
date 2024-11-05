@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { TaskModuleResponse } from "botbuilder"
+import { TaskModuleResponse, TaskModuleTaskInfo } from "botbuilder"
 
 export class TaskModuleResponseFactory {
-  static createResponse (taskModuleInfoOrString) : TaskModuleResponse {
+  static createResponse (taskModuleInfoOrString: TaskModuleTaskInfo) : TaskModuleResponse {
     console.log('createResponse', taskModuleInfoOrString)
     if (typeof taskModuleInfoOrString === 'string') {
       return {
@@ -23,7 +23,7 @@ export class TaskModuleResponseFactory {
     }
   }
 
-  static toTaskModuleResponse (taskInfo) : TaskModuleResponse {
+  static toTaskModuleResponse (taskInfo: TaskModuleTaskInfo) : TaskModuleResponse {
     return TaskModuleResponseFactory.createResponse(taskInfo)
   }
 }
