@@ -38,6 +38,8 @@ class TeamsTaskModuleBot extends TeamsActivityHandler {
     // Called when the user selects an options from the displayed HeroCard or
     // AdaptiveCard.  The result is the action to perform.
 
+    console.log('handleTeamsTaskModuleFetch', taskModuleRequest)
+
     const cardTaskFetchValue = taskModuleRequest.data.data
     const taskInfo = {} // TaskModuleTaskInfo
 
@@ -56,11 +58,13 @@ class TeamsTaskModuleBot extends TeamsActivityHandler {
       taskInfo.card = this.createAdaptiveCardAttachment()
       this.setTaskInfo(taskInfo, TaskModuleUIConstants.AdaptiveCard)
     }
-
+    console.log(taskInfo)
     return TaskModuleResponseFactory.toTaskModuleResponse(taskInfo)
   }
 
   async handleTeamsTaskModuleSubmit (context, taskModuleRequest) {
+    
+    console.log('handleTeamsTaskModuleSubmit', taskModuleRequest)
     // Called when data is being returned from the selected option (see `handleTeamsTaskModuleFetch').
 
     // Echo the users input back.  In a production bot, this is where you'd add behavior in

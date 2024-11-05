@@ -28,7 +28,14 @@ server.use(express.static('pages'))
 
 const port = process.env.port || process.env.PORT || 3978
 server.listen(port, () => {
-  console.log(`\n listening in port ${port} `)
+  console.log(`\n listening in port ${port} v2 `)
+})
+
+server.get('/getAppConfig', (req, res,next) => {
+  var responseMessageData = {
+      MicrosoftAppId: process.env.MicrosoftAppId
+  }
+  res.send(responseMessageData)
 })
 
 server.post('/api/messages', async (req, res) => {

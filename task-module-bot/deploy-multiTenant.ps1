@@ -18,7 +18,8 @@ az containerapp create `
     --secrets clientsecret=$($secretJson.password) `
     --env-vars `
         MicrosoftAppId=$($secretJson.appId) `
-        MicrosoftAppPassword="secretref:clientsecret" `
+        MicrosoftAppPassword="secretref:clientsecret"
+        
 
 $acaJson = az containerapp show -n $botName -g $rg | ConvertFrom-Json
 
