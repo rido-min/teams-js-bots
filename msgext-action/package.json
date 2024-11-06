@@ -1,0 +1,16 @@
+{
+  "name": "msgext-action",
+  "version": "1.0.0",
+  "description": "--- page_type: sample description: Hello world Messaging Extension that accepts parameters and returns a card. Also, how to receive a forwarded message as a parameter in a Messaging Extension. products: - office-teams - office - office-365 languages: - javascript - nodejs extensions:  contentType: samples  createdDate: \"07/07/2021 01:38:27 PM\" urlFragment: officedev-microsoft-teams-samples-msgext-action-quickstart-js ---",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "botbuilder": "^4.23.1",
+    "express": "^5.0.1"
+  }
+}

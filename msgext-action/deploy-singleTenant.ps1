@@ -12,7 +12,7 @@ az containerapp create `
     -n $botName `
     -g $rg `
     --registry-server botimages.azurecr.io `
-    --image botimages.azurecr.io/task-module-bot:latest `
+    --image botimages.azurecr.io/msgext-action-js:latest `
     --ingress external `
     --environment BotApps `
     --secrets clientsecret=$($secretJson.password) `
